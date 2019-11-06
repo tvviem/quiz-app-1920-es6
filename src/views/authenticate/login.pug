@@ -1,0 +1,26 @@
+extends ../layout
+block content
+  section.hero.is-fullheight
+    .hero-body
+      .container.has-text-centered
+        .columns.is-centered.is-mobile
+          .column.is-5-tablet.is-4-desktop.is-3-widescreen.is-two-thirds-mobile.box
+            h4.title.has-text-grey.is-4 NGƯỜI DÙNG
+            form
+              .field
+                .control.has-icons-left
+                  input.input(type='text', placeholder='Tên đăng nhập', autofocus='', autocomplete='')
+                  span.icon.is-small.is-left
+                    i.fas.fa-user
+              .field
+                .control.has-icons-left
+                  input.input(type='password', autocomplete='', placeholder='Mật khẩu')
+                  span.icon.is-small.is-left
+                    i.fas.fa-key
+              .field
+                label.checkbox
+                  input(type='checkbox')
+                  | &nbsp;Nhớ phiên
+              .field
+                button.button.is-primary.is-fullwidth
+                  | Đăng nhập

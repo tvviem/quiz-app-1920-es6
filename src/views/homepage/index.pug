@@ -1,0 +1,31 @@
+extends ../layout
+block navbar
+  //- Navbar
+  nav.navbar.is-fixed-top.box-shadow-y
+    .navbar-brand
+      a.navbar-burger.toggler(href='#')
+        span
+        span
+        span
+      a.navbar-item.has-text-weight-bold.has-text-black(href='#')
+        | Reviewing
+      a.navbar-burger.nav-toggler(href='#')
+        span
+        span
+        span
+    .navbar-menu.has-background-white
+      .navbar-start
+        a.navbar-item(href='#') Giới thiệu
+        a.navbar-item(href='#')
+          span.icon
+            i.fab.fa-glide-g
+          | &nbsp;Hướng dẫn
+        a.navbar-item(href='#') Người viết
+      .navbar-end
+        a.navbar-item(href='#') Đăng ký
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link(href='#') Đăng nhập
+          .navbar-dropdown.is-right
+            a.navbar-item(href='#') Sinh viên
+            a.navbar-item(href='#') Giảng viên
+  //- End navbar

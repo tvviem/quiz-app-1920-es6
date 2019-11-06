@@ -12,7 +12,7 @@ var app = express();
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
-
+ // logger giai doan dev, hien thi cac thong tin co ban. Khi production, nen ghi ra file luu server
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,7 +22,8 @@ app.use(sassMiddleware({
   src: join(__dirname, '../public'),
   dest: join(__dirname, '../public'),
   indentedSyntax: false, // true = .sass and false = .scss
-  sourceMap: true
+  sourceMap: true,
+  debug: true // to show error when not locate file
 }));
 
 app.use(express.static(join(__dirname, '../public')));

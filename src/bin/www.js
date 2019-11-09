@@ -7,6 +7,7 @@
 import app from '../app';
 const debug = require('debug')('quiz-app-1920:server');
 import { createServer } from 'http';
+require('dotenv').config(); // loading .env file
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +26,7 @@ var server = createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+//server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -87,4 +88,25 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+
+/**
+ * functions for testing
+ */
+const boot = () => {
+  server.listen(app.get('port'), () => {
+    console.info(`Express server listening on port ${app.get('port')}`)
+  })
+}
+const shutdown = () => {
+  server.close()
+}
+
+if (require.main === module) {
+  boot() // if run demo
+} else { // for testing module
+  console.info('Running app as a module') // for testing module
+  exports.boot = boot
+  exports.shutdown = shutdown
+  exports.port = app.get('port')
 }

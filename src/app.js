@@ -12,6 +12,8 @@ var app = express();
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
+//app.engine('pug', require('pug').renderFile);
+
  // logger giai doan dev, hien thi cac thong tin co ban. Khi production, nen ghi ra file luu server
 app.use(logger('dev'));
 app.use(express.json());
@@ -45,5 +47,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+if(app.get('NODE_ENV') === 'production') { // when build to production
+  // Copy all folder from ./src/views to ./dist/views
+  // change logger module from dev --> prod using morgan
+}
 
 export default app;

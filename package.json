@@ -9,9 +9,8 @@
     "dev": "SET NODE_ENV=development && npm run watch ./src/bin/www",
 
     "clean": "rimraf dist",
-    "build": "npm run clean && babel ./src --config-file ./.babelrc --out-dir dist",
-    "prod": "npm run build && SET NODE_ENV=production && node ./dist/bin/www",
-    "start": "npm run prod"
+    "build": "npm run clean && babel src --config-file ./.babelrc --out-dir dist --copy-files",
+    "prod": "npm run build && SET NODE_ENV=production && node ./dist/bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

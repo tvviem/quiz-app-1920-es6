@@ -51,6 +51,7 @@ app.use(function(err, req, res, next) {
 if(app.get('NODE_ENV') === 'production') { // when build to production
   // Copy all folder from ./src/views to ./dist/views
   // change logger module from dev --> prod using morgan
+  console.log('INSIDE config when prod');
 }
 
 export default app;

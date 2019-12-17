@@ -5,9 +5,13 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import sassMiddleware from 'node-sass-middleware';
 
-// import dbcon from './database/dbconnect';
-import indexRouter from './routes/index';
+import { dbcon } from './database/dbconnect';
+import models from './models';
 
+var adminUser = new models.User.Admin({});
+// how to create one object/document
+
+import indexRouter from './routes/index';
 var app = express();
 
 // view engine setup

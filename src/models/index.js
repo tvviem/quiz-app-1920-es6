@@ -1,9 +1,7 @@
-// import mongoose from 'mongoose';
-//import Student from './student';
-//import Lecturer from './lecturer';
-import Question from './business/question';
+//import Question from './business/question';
+import {Admin, Lecturer, Student} from './business/user';
+import {StudentRole, LecturerRole, AdminRole} from './business/role'
 
-import User from './business/user';
-
-const models = { User, Question };
+//const models = { Admin, Lecturer, Student, Question };
+const models = {StudentRole, LecturerRole, AdminRole};
 export default models;

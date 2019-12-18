@@ -8,9 +8,33 @@ import sassMiddleware from 'node-sass-middleware';
 import { dbcon } from './database/dbconnect';
 import models from './models';
 
-var adminUser = new models.User.Admin({});
-// how to create one object/document
+var studentRole = new models.StudentRole({
+  roleName: 'student'
+});
+studentRole.save(function(err, studentReturn) {
+  if(err) return console.error(err);
+  console.log(studentReturn.roleName + ' created!');
+});
+var lecturerRole = new models.LecturerRole({roleName: 'lecturer'})
+lecturerRole.save(function(err, lectReturn) {
+  if(err) return console.error(err);
+  console.log(lectReturn.roleName + ' created!');
+});
 
+/* var adminDF = new models.Admin({
+  firstName: 'Viêm',
+  lastName: 'Triệu',
+  gender: 'Nam',
+  email: 'tvviem@blu.edu.vn',
+  username: 'tvviem',
+  password: '123456',
+  department: 'Công nghệ thông tin'
+});
+// how to create one object/document
+adminDF.save(function(err, adminReturn) {
+  if(err) return console.error(err);
+  console.log(adminReturn.email + ' created!');
+}); */
 import indexRouter from './routes/index';
 var app = express();
 

@@ -1,8 +1,10 @@
 import { Router } from 'express';
 const router = Router();
+import userRoute from './user.routes';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  
   res.render('homepage/index');
 });
 // get Login form

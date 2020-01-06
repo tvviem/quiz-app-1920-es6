@@ -1,15 +1,48 @@
 import mongoose from 'mongoose';
 require('dotenv').config(); // loading .env file
 
-//mongoose.connect(process.env.DBCONN_DEV, { useNewUrlParser: true });
-const dbcon = mongoose.connect(process.env.DBCONN_DEV, { 
+/* export default class DbConnection {
+  constructor() {
+    this._conn=null;
+  }
+  connect() {
+    this._conn = mongoose.createConnection(process.env.DBCONN_DEV, { 
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      poolSize: 6
+    });
+    this._conn.once('error', (error) => {
+      console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
+    });
+  }
+  
+  get conn() {
+    return this._conn;
+  }
+  static getInstance() {
+    if(!instance || instance==='undefined') {
+      instance = new DbConnection();
+      instance.connect();
+    }
+    return instance
+   }
+} */
+// use for multi connect 
+const conn = mongoose.createConnection(process.env.DBCONN_DEV, { 
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true 
-  }).then(() => console.log('Connected to Mongodb with Mongoose'))
-  .catch(err => console.error('Error Connected! \n' + err));
+  useCreateIndex: true,
+  poolSize: 6
+});
+conn.once('error', (error) => {
+  console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
+});
+export default conn;
 
-//const dbcon = mongoose.createConnection();
-//dbcon.on('error', err => { console.error(err); });
-//dbcon.once('open', () => console.log('Connected to Mongodb with Mongoose'))
-export default { dbcon };
+/* conn.readyState in cases {
+  0: disconnected, 
+  1: connected, 
+  2: connecting,
+  3: disconnecting
+} */

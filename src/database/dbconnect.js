@@ -1,34 +1,24 @@
 import mongoose from 'mongoose';
 require('dotenv').config(); // loading .env file
 
-/* export default class DbConnection {
+
+class Connection {
   constructor() {
-    this._conn=null;
+    const url =
+      process.env.MONGODB_URI || `mongodb://tvviem:Password123@localhost:27017/quizapp`;
+    console.log("Establish new connection with url", url);
+    mongoose.Promise = global.Promise;
+    mongoose.set("useNewUrlParser", true);
+    mongoose.set("useFindAndModify", false);
+    mongoose.set("useCreateIndex", true);
+    mongoose.set("useUnifiedTopology", true);
+    mongoose.connect(url);
   }
-  connect() {
-    this._conn = mongoose.createConnection(process.env.DBCONN_DEV, { 
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      poolSize: 6
-    });
-    this._conn.once('error', (error) => {
-      console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
-    });
-  }
-  
-  get conn() {
-    return this._conn;
-  }
-  static getInstance() {
-    if(!instance || instance==='undefined') {
-      instance = new DbConnection();
-      instance.connect();
-    }
-    return instance
-   }
-} */
-// use for multi connect 
+}
+
+export default new Connection();
+
+/* // use for multi connect 
 const conn = mongoose.createConnection(process.env.DBCONN_DEV, { 
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -38,7 +28,7 @@ const conn = mongoose.createConnection(process.env.DBCONN_DEV, {
 conn.once('error', (error) => {
   console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
 });
-export default conn;
+export default conn; */
 
 /* conn.readyState in cases {
   0: disconnected, 

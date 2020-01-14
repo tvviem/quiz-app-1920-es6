@@ -36,7 +36,6 @@ userSchema.pre('save', function(next) {
   if (!user.isModified('password')) {
     return next();
   }
-
   //we generate the salt using 12 rounds and then use that salt with the received password string to generate our hash
   bcrypt
     .genSalt(12)
@@ -51,4 +50,4 @@ userSchema.pre('save', function(next) {
 });
 
 const BaseUser = model('User', userSchema);
-export default BaseUser;
+export { BaseUser };

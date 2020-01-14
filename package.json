@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "test": "./node_modules/.bin/mocha --require @babel/register ./tests/index",
+    "test-func": "./node_modules/.bin/mocha --require @babel/register",
     "server": "babel-node ./src/bin/www",
     "watch": "nodemon --config ./nodemon.json",
     "dev": "SET NODE_ENV=development && npm run watch ./src/bin/www",
@@ -21,7 +22,8 @@
     "mongoose": "^5.8.3",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",

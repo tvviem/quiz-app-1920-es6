@@ -2,10 +2,15 @@ import createError from 'http-errors';
 import express from 'express';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+//import logger from 'morgan';
+//import {morgan as httpLogger} from './routes/middlewares/httpLogger'
 import sassMiddleware from 'node-sass-middleware';
 
-import indexRouter from './routes';
+import './database/dbconnect';
+import apiRouter from './routes/api/v1'; 
+
+import indexRouter from './routes/index.routes';
+// import userRouter from './routes/user.routes';
 
 var app = express();
 
@@ -15,9 +20,10 @@ app.set('view engine', 'pug');
 //app.engine('pug', require('pug').renderFile);
 
  // logger giai doan dev, hien thi cac thong tin co ban. Khi production, nen ghi ra file luu server
-app.use(logger('dev'));
+//app.use(logger('dev'));
+//app.use(httpLogger);
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true })); // extended=true allow post nested object json
 app.use(cookieParser());
 
 app.use(sassMiddleware({
@@ -30,6 +36,10 @@ app.use(sassMiddleware({
 
 app.use(express.static(join(__dirname, '../public')));
 
+// ROUTE FOR REST_API
+app.use('/api', apiRouter);
+
+// ROUTE FOR WEB MVC
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler

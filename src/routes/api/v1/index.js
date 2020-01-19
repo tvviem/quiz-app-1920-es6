@@ -1,7 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-import userApi from './user.controller';
-//import questionController from './question.controller';
+import userApi from '../../../repositories/user.repo';
 
 // domain.com/api/
 // API for users

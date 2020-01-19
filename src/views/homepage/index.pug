@@ -1,19 +1,15 @@
 extends ../layout
-block navbar
+block header
   //- Navbar
-  nav.navbar.is-fixed-top.box-shadow-y
+  nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigation')
     .navbar-brand
-      a.navbar-burger.toggler(href='#')
+      a.navbar-item.has-text-weight-bold(href='#')
+        | IT Quiz
+      a.navbar-burger(data-target='navMenu')
         span
         span
         span
-      a.navbar-item.has-text-weight-bold.has-text-black(href='#')
-        | Reviewing
-      a.navbar-burger.nav-toggler(href='#')
-        span
-        span
-        span
-    .navbar-menu.has-background-white
+    .navbar-menu.has-background-white(id='navMenu')
       .navbar-start
         a.navbar-item(href='#') Giới thiệu
         a.navbar-item(href='#')
@@ -28,4 +24,8 @@ block navbar
           .navbar-dropdown.is-right
             a.navbar-item(href='#') Sinh viên
             a.navbar-item(href='#') Giảng viên
-  //- End navbar
+  //- End header
+block footer
+  footer.navbar.is-fixed-bottom.has-text-centered.is-vcentered.box-shadow-y
+    .column
+      | &copy; 2019

@@ -1,0 +1,69 @@
+extends ../layout
+block content
+  section.hero
+    .hero-body
+      .container
+        form
+          .columns.is-centered.is-mobile
+            .column.is-6-tablet.is-8-desktop.is-6-widescreen.is-two-thirds-mobile.box
+              h4.title.is-4.has-text-centered ĐĂNG KÝ NGƯỜI DÙNG
+              .columns
+                .column
+                  .field
+                    label.label Họ và chữ đệm
+                    .control.has-icons-left
+                      input.input(type='text', autofocus, placeholder='vd: Nguyễn Hữu', autocomplete)
+                      span.icon.is-small.is-left
+                        i.far.fa-user
+                  .field
+                    label.label Tên
+                    .control.has-icons-left
+                      input.input(type='text', placeholder='vd: Học', autofocus, autocomplete)
+                      span.icon.is-small.is-left
+                        i.far.fa-user
+                  .field
+                    label.label Email
+                    .control.has-icons-left
+                      input.input(type='email', placeholder='vd: nhhoc@gmail.com', autofocus, autocomplete, title='Hãy cung cấp email bạn đang sử dụng!')
+                      span.icon.is-small.is-left
+                        i.far.fa-envelope
+                .column
+                  .field
+                    label.label Định danh đăng nhập
+                    .control.has-icons-left
+                      input.input(type='text', placeholder='vd: nhhoc', autofocus, autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng')
+                      span.icon.is-small.is-left
+                        i.fas.fa-user-tag
+                  .field
+                    label.label Mật khẩu
+                    .control.has-icons-left
+                      input.input(type='password', autocomplete, placeholder='Mật khẩu')
+                      span.icon.is-small.is-left
+                        i.fas.fa-key
+                  .field
+                    label.label Nhập lại mật khẩu
+                    .control.has-icons-left
+                      input.input(type='password', autocomplete, placeholder='Xác nhận lại')
+                      span.icon.is-small.is-left
+                        i.fas.fa-key
+              .field
+                label.label Ngành học
+                .control.has-icons-left
+                  .select.is-info.is-fullwidth
+                    select
+                      option Công nghệ thông tin
+                      option Ngôn ngữ Anh
+                      option Quản trị kinh doanh
+                      option Sư phạm
+                      option Khác
+                  .icon.is-small.is-left
+                    i.fas.fa-user-graduate
+              .field
+                label.label Tóm tắt bản thân
+                .control
+                  textarea.textarea.is-info(placeholder='Sinh viên năm mấy? Khoa, trường học?', rows='3')
+              .field.is-grouped.is-grouped-centered
+                p.control
+                  a.button.is-link Đăng ký
+                p.control
+                  a.button.is-link.is-light Trở về

@@ -1,0 +1,85 @@
+extends ../layout
+block navbar
+  include ../partials/navbar.pug
+
+block content
+  section.hero
+    .hero-body
+      .container
+        form
+          .columns.is-centered.is-mobile
+            .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box
+              h4.title.is-4.has-text-centered ĐĂNG KÝ NGƯỜI DÙNG
+              .field.is-horizontal
+                .field-label.is-normal
+                  label.label Họ tên
+                .field-body
+                  .field
+                    .control.has-icons-left
+                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete)
+                      span.icon.is-small.is-left
+                        i.far.fa-user
+                  .field.is-narrow
+                    .control.has-icons-left
+                      input.input(type='text', placeholder='Tên', autofocus, autocomplete)
+                      span.icon.is-small.is-left
+                        i.far.fa-user
+              .field.is-horizontal
+                .field-label.is-normal
+                  label.label Định danh
+                .field-body
+                  .field.is-narrow
+                    .control.has-icons-left
+                      input.input(type='text', placeholder='Tên đăng nhập', autofocus, autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng')
+                      span.icon.is-small.is-left
+                        i.fas.fa-user-tag
+                  .field
+                    .control.has-icons-left
+                      input.input(type='email', placeholder='Địa chỉ email', autofocus, autocomplete, title='Hãy cung cấp email bạn đang sử dụng!')
+                      span.icon.is-small.is-left
+                        i.far.fa-envelope
+              .field.is-horizontal
+                .field-label.is-normal
+                  label.label Mật khẩu
+                .field-body
+                  .field
+                    .control.has-icons-left
+                      input.input(type='password', autocomplete, placeholder='Mật khẩu')
+                      span.icon.is-small.is-left
+                        i.fas.fa-key
+                  .field
+                    .control.has-icons-left
+                      input.input(type='password', autocomplete, placeholder='Xác nhận lại')
+                      span.icon.is-small.is-left
+                        i.fas.fa-key
+              .field.is-horizontal
+                .field-label.is-normal
+                  label.label Ngành học
+                .field-body
+                  .field.is-narrow
+                    .control.has-icons-left
+                      .select
+                        select
+                          option Công nghệ thông tin
+                          option Ngôn ngữ Anh
+                          option Quản trị kinh doanh
+                          option Sư phạm
+                          option Khác
+                      .icon.is-small.is-left
+                        i.fas.fa-user-graduate
+              .field.is-horizontal
+                .field-label.is-normal
+                  label.label Bản thân
+                .field-body
+                  .field
+                    .control
+                      textarea.textarea.is-info(placeholder='Sinh viên năm mấy? Khoa, trường học?', rows='3')
+              .field.is-horizontal
+                .field-body
+                  .field.is-grouped.is-grouped-centered
+                    p.control
+                      a.button.is-rounded.is-primary Đăng ký
+                    p.control
+                      a.button.is-rounded.is-outlined Trở về
+block footer
+  include ../partials/footer.pug

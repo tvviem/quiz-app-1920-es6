@@ -2,11 +2,10 @@ import mongoose from 'mongoose';
 require('dotenv').config(); // loading .env file
 
 
-class Connection {
+/* class Connection {
   constructor() {
     const url =
       process.env.MONGODB_URI || `mongodb://tvviem:Password123@localhost:27017/quizapp`;
-    console.log("Establish new connection with url", url);
     mongoose.Promise = global.Promise;
     mongoose.set("useNewUrlParser", true);
     mongoose.set("useFindAndModify", false);
@@ -16,10 +15,10 @@ class Connection {
   }
 }
 
-export default new Connection();
+export default new Connection(); */
 
-/* // use for multi connect 
-const conn = mongoose.createConnection(process.env.DBCONN_DEV, { 
+// use for multi connect 
+const conn = mongoose.createConnection(process.env.MONGODB_URI, { 
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -28,7 +27,7 @@ const conn = mongoose.createConnection(process.env.DBCONN_DEV, {
 conn.once('error', (error) => {
   console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
 });
-export default conn; */
+export default conn;
 
 /* conn.readyState in cases {
   0: disconnected, 

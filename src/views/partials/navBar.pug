@@ -1,0 +1,42 @@
+nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigation')
+  .container
+    .navbar-brand
+      a.navbar-item.has-text-weight-bold(href='/')
+        | QuizSysBLU
+      a.navbar-burger(data-target='navMenu')
+        span
+        span
+        span
+    .navbar-menu.has-background-white(id='navMenu')
+      .navbar-start
+        a.navbar-item(href='/')
+          span.icon
+            i.fas.fa-home
+          | &nbsp;Trang chủ
+        a.navbar-item(href='/guides')
+          span.icon
+            i.fab.fa-glide-g
+          | &nbsp;Hướng dẫn
+      .navbar-end
+        a.navbar-item(href='/users/register') 
+          span.icon
+            i.fas.fa-user-plus
+          | &nbsp;Đăng ký
+        a.navbar-item(href='/users/login') 
+          span.icon
+            i.fas.fa-sign-in-alt
+          | &nbsp;Đăng nhập
+        //- .navbar-item.has-dropdown.is-hoverable
+        //-   a.navbar-link
+        //-     span.icon
+        //-       i.fas.fa-sign-in-alt
+        //-     | &nbsp;Đăng nhập
+        //-   .navbar-dropdown.is-right
+        //-     a.navbar-item(href='/login/student')
+        //-       span.icon
+        //-         i.fas.fa-user-tie
+        //-       | &nbsp;Sinh viên
+        //-     a.navbar-item(href='/login/lecturer')
+        //-       span.icon
+        //-         i.fas.fa-chalkboard-teacher
+        //-       | &nbsp;Giảng viên

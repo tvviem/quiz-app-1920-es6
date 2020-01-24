@@ -1,31 +1,35 @@
 extends ../layout
-block header
-  //- Navbar
-  nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigation')
-    .navbar-brand
-      a.navbar-item.has-text-weight-bold(href='#')
-        | IT Quiz
-      a.navbar-burger(data-target='navMenu')
-        span
-        span
-        span
-    .navbar-menu.has-background-white(id='navMenu')
-      .navbar-start
-        a.navbar-item(href='#') Giới thiệu
-        a.navbar-item(href='#')
-          span.icon
-            i.fab.fa-glide-g
-          | &nbsp;Hướng dẫn
-        a.navbar-item(href='#') Người viết
-      .navbar-end
-        a.navbar-item(href='#') Đăng ký
-        .navbar-item.has-dropdown.is-hoverable
-          a.navbar-link(href='#') Đăng nhập
-          .navbar-dropdown.is-right
-            a.navbar-item(href='#') Sinh viên
-            a.navbar-item(href='#') Giảng viên
-  //- End header
+block navbar
+  include ../partials/navbar.pug
+
+block content
+  section.hero
+    .hero-body
+      .container
+        nav.level
+          .level-item
+            div
+              figure.image.is-64x64
+                img.is-rounded(alt='Sinh viên', src='images/student.png', title='Số sinh viên')
+              p.title 1,245
+          .level-item
+            div
+              figure.image.is-64x64
+                img.is-rounded(alt='Câu hỏi', src='images/question.png', title='Số câu hỏi trong hệ thống')
+              p.title 3,100
+          .level-item
+            div
+              figure.image.is-64x64
+                img.is-rounded(alt='Giảng viên', src='images/lecturer.png', title='Số giảng viên')
+              p.title 225
+        .columns.is-vcentered
+          .column.is-5.is-offset-1.landing-caption
+            h1.title.is-1.is-bold.is-spaced Trắc nghiệm
+            p.subtitle.is-muted Bạn có trả lời trắc nghiệm thường xuyên không! 
+              | Hãy là người dùng của hệ thống để tìm hiểu được nhiều tri thức mới nhe.
+            a.button.is-rounded.is-primary(target='_blank') Tham gia
+          .column.is-5.is-offset-1
+            figure.image.is-4by3
+              img(src='images/iq-illustrate.png', style='display: block;')
 block footer
-  footer.navbar.is-fixed-bottom.has-text-centered.is-vcentered.box-shadow-y
-    .column
-      | &copy; 2019
+  include ../partials/footer.pug

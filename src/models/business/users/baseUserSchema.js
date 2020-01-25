@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 
 const baseOptions = {
   discriminatorKey: 'itemType', // our discriminator key, could be anything. when create Student itemType auto equal Student
@@ -25,13 +25,15 @@ const userSchema = new Schema({
     match: [/^[a-zA-Z0-9]+$/, 'Username is invalid'], 
     index: true, unique: true
   },
-  password: {type: String, required: [true, 'can not be blank']},
+  //password: {type: String, required: [true, 'can not be blank']},
+  hash: {type: String, required: [true, 'Hash can not be blank']},
+  salt: {type: String, required: [true, 'Salt can not be blank']},
   //created_at: {type: Date, default: Date.now},
   role: { type: String, enum: ['student', 'lecturer', 'admin'], default: 'student'},
   iconString: {type: String, default: 'fas fa-user'} // chalkboard-teacher, users-cog
 }, baseOptions)
 
-userSchema.pre('save', function(next) {
+/* userSchema.pre('save', function(next) {
   let user = this;
   if (!user.isModified('password')) {
     return next();
@@ -47,7 +49,7 @@ userSchema.pre('save', function(next) {
       next();
     })
     .catch((err) => next(err));
-});
+}); */
 
 const BaseUser = model('User', userSchema);
 export { BaseUser };

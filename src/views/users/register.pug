@@ -6,7 +6,7 @@ block content
   section.hero
     .hero-body
       .container
-        form
+        form(action='/users/register', method='POST')
           .columns.is-centered.is-mobile
             .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box
               h4.title.is-4.has-text-centered ĐĂNG KÝ NGƯỜI DÙNG
@@ -16,12 +16,12 @@ block content
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete)
+                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete, name='lastName')
                       span.icon.is-small.is-left
                         i.far.fa-user
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên', autofocus, autocomplete)
+                      input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName')
                       span.icon.is-small.is-left
                         i.far.fa-user
               .field.is-horizontal
@@ -30,12 +30,13 @@ block content
                 .field-body
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên đăng nhập', autofocus, autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng')
+                      input.input(type='text', placeholder='Tên đăng nhập', autofocus,
+                                   autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng', name='username')
                       span.icon.is-small.is-left
                         i.fas.fa-user-tag
                   .field
                     .control.has-icons-left
-                      input.input(type='email', placeholder='Địa chỉ email', autofocus, autocomplete, title='Hãy cung cấp email bạn đang sử dụng!')
+                      input.input(type='email', placeholder='Địa chỉ email', autofocus, autocomplete, title='Hãy cung cấp email bạn đang sử dụng!', name='email')
                       span.icon.is-small.is-left
                         i.far.fa-envelope
               .field.is-horizontal
@@ -44,7 +45,7 @@ block content
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Mật khẩu')
+                      input.input(type='password', autocomplete, placeholder='Mật khẩu', name='password')
                       span.icon.is-small.is-left
                         i.fas.fa-key
                   .field
@@ -77,9 +78,9 @@ block content
               .field.is-horizontal
                 .field-body
                   .field.is-grouped.is-grouped-centered
-                    p.control
-                      a.button.is-rounded.is-primary Đăng ký
-                    p.control
-                      a.button.is-rounded.is-outlined Trở về
+                    .control
+                      button.button.is-rounded.is-primary Đăng ký
+                    .control
+                      button.button.is-rounded.is-outlined Trở về
 block footer
   include ../partials/footer.pug

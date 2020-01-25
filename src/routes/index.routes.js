@@ -10,6 +10,7 @@ router.use('/api', allApi);
 // MVC tradition
 router.get(['/', '/index.php'], getHomePage);
 router.get('/users/register', userController.showSignUpUi);
+router.post('/users/register', userController.postRegister);
 router.get('/users/login', userController.showSignInUi);
 
 router.get('/users/list', userController.showUsersDetailUi);

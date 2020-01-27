@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose';
+import conn from '../../../database/dbconnect';
 // const bcrypt = require('bcryptjs');
 
 const baseOptions = {
@@ -51,5 +52,5 @@ const userSchema = new Schema({
     .catch((err) => next(err));
 }); */
 
-const BaseUser = model('User', userSchema);
+const BaseUser = conn.model('User', userSchema);
 export { BaseUser };

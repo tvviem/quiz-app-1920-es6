@@ -1,5 +1,7 @@
 import { BaseUser as User } from '../models/business/users/baseUserSchema';
 import { genPassword } from '../utils/processPassword'
+import UserService from '../services/user.services';
+
 function showSignUpUi(req, res) {
   res.render('users/register');
 }
@@ -11,9 +13,7 @@ function showSignInUi(req, res) {
 function showUsersDetailUi(req, res) {
   res.send('Show users detail ui'); // design ui for manage user
 };
-function postRegister(req, res, next) {
-  console.log(req.body);
-
+function postRegister(req, res) {
   const saltHash = genPassword(req.body.password);
   const salt = saltHash.salt;
   const hash = saltHash.hash;
@@ -26,15 +26,14 @@ function postRegister(req, res, next) {
     hash: hash,
     salt: salt
   });
-  console.log(newUser); // OKE
-  // BUT have not save ? Why
-
-  newUser.save().then((user) => {
-    console.log(user);
-    res.redirect('/users/login');
-  }).catch((err) => {
-    req.flash('error', 'Error create user');
-    next();
+  newUser.save((err) => {
+    if(err) {
+      // console.log(err);
+      req.flash('warning', err.message);
+      return res.redirect('/users/register');
+    }
+    req.flash('success', 'Register success!');
+    return res.redirect('/users/login');
   });
 }
 export {

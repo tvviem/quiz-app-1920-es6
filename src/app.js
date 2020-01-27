@@ -108,6 +108,13 @@ const sessionOptions = {
 }
 app.use(session(sessionOptions));
 app.use(require('flash')()); // here, because require session
+// flush session to clear old messages
+app.use((req, res, next) => {
+  if (req.session && req.session.flash && req.session.flash.length > 0) {
+    req.session.flash = [];
+  }
+  next();
+});
 
 // ROUTE FOR WEB MVC
 app.use('/', indexRouter);

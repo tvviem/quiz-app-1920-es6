@@ -6,6 +6,8 @@ block content
   section.hero
     .hero-body
       .container
+        if flash
+          include ../partials/messages.pug
         form(action='/users/register', method='POST')
           .columns.is-centered.is-mobile
             .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box

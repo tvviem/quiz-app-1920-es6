@@ -1,5 +1,5 @@
 import { BaseUser as User } from '../models/business/users/baseUserSchema';
-import { genPassword } from '../utils/processPassword'
+import { genPassword } from '../security/processPassword'
 import UserService from '../services/user.services';
 
 function showSignUpUi(req, res) {

@@ -11,7 +11,7 @@ const conn = mongoose.createConnection(process.env.MONGODB_URI, {
 conn.once('error', (error) => {
   console.error('ERROR-CONN-DB: Could not identify DB Server: ' + error);
 });
-conn.on('open', () => console.log('Connected to Mongodb with Mongoose'));
+//conn.on('open', () => console.log('Connected to Mongodb with Mongoose'));
 export default conn;
 
 /* conn.readyState in cases {

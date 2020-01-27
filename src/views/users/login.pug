@@ -8,15 +8,15 @@ block content
         .columns.is-centered.is-mobile
           .column.is-5-tablet.is-4-desktop.is-3-widescreen.is-two-thirds-mobile.box
             h4.title.has-text-grey.is-4 NGƯỜI DÙNG
-            form
+            form(action='/users/login', method='POST')
               .field
                 .control.has-icons-left
-                  input.input(type='text', placeholder='Tên đăng nhập', autofocus='', autocomplete='')
+                  input.input(type='text', placeholder='Tên đăng nhập', autofocus, autocomplete, name='userName')
                   span.icon.is-small.is-left
                     i.fas.fa-user
               .field
                 .control.has-icons-left
-                  input.input(type='password', autocomplete='', placeholder='Mật khẩu')
+                  input.input(type='password', placeholder='Mật khẩu', name='passWord')
                   span.icon.is-small.is-left
                     i.fas.fa-key
               .field
@@ -24,5 +24,5 @@ block content
                   input(type='checkbox')
                   | &nbsp;Nhớ phiên
               .field
-                button.button.is-primary.is-fullwidth
+                button.button.is-primary.is-fullwidth(type='submit')
                   | Đăng nhập

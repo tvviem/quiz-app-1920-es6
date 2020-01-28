@@ -1,7 +1,7 @@
-import BaseUser from '../models/business/users/baseUserSchema';
-import Admin from '../models/business/users/admin';
-import Lecturer from '../models/business/users/lecturer';
-import Student from '../models/business/users/student';
+// import BaseUser from '../models/business/users/baseUserSchema';
+// import Admin from '../models/business/users/admin';
+// import Lecturer from '../models/business/users/lecturer';
+// import Student from '../models/business/users/student';
 import BaseService from './base.service';
 //import { UserRepository } from '../repository/user.repo';
 // var UserRepository = require('../repository/user.repo').UserRepository;

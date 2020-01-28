@@ -1,7 +1,8 @@
 import BaseRepo from  './base.repo';
 
 import UserService from '../services/user.services';
-import {BaseUser as User} from '../models/business/users/baseUserSchema';
+import {BaseUser as User} from '../models';
+
 const userService = new UserService(User);
 
 class UserRepo extends BaseRepo {

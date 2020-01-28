@@ -2,18 +2,19 @@ import { BaseUser as User } from '../models/business/users/baseUserSchema';
 import { genPassword } from '../security/processPassword'
 import UserService from '../services/user.services';
 
-function showSignUpUi(req, res) {
+export function showSignUpUi(req, res) {
   res.render('users/register');
 }
 
-function showSignInUi(req, res) {
+export function showSignInUi(req, res) {
   res.render('users/login');
 }
 
-function showUsersDetailUi(req, res) {
+export function showUsersDetailUi(req, res) {
   res.send('Show users detail ui'); // design ui for manage user
-};
-function postRegister(req, res) {
+}
+
+export async function postRegister(req, res) {
   const saltHash = genPassword(req.body.password);
   const salt = saltHash.salt;
   const hash = saltHash.hash;
@@ -26,7 +27,7 @@ function postRegister(req, res) {
     hash: hash,
     salt: salt
   });
-  newUser.save((err) => {
+  await newUser.save((err) => {
     if(err) {
       // console.log(err);
       req.flash('warning', err.message);
@@ -36,9 +37,3 @@ function postRegister(req, res) {
     return res.redirect('/users/login');
   });
 }
-export {
-  showUsersDetailUi,
-  showSignInUi,
-  showSignUpUi,
-  postRegister
-};

@@ -1,6 +1,5 @@
 import { Schema } from 'mongoose';
-// const BaseUser = require('./baseUserSchema').BaseUser;
-import { BaseUser } from './baseUserSchema';
+import {BaseUser} from '../../index';
 
 const Lecturer = BaseUser.discriminator('Lecturer', new Schema({
   department: {type: String, required: [true, 'where working of lecturers']},

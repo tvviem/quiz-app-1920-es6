@@ -8,14 +8,15 @@ router.post('/register', userController.postRegister);
 router.get('/login', userController.showSignInUi);
 router.post('/login', passport.authenticate('local',
   { 
-    failureRedirect: '/login-failure', 
-    successRedirect: '/login-success' 
-  }), 
-  (err, req, res, next) => {
-    if (err) next(err);
-  }
-);
-
+    successRedirect: '/login-success',
+    failureRedirect: '/login-failure',
+    failureFlash: true 
+  }));
+    
+  // }), 
+  // (err, req, res, next) => {
+  //   if (err) next(err);
+  // }
 router.get('/list', userController.showUsersDetailUi);
 
 export default router;

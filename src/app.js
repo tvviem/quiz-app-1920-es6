@@ -1,11 +1,13 @@
+if(process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 import createError from 'http-errors';
 import express from 'express';
 import session from 'express-session'; 
 const MongoStore = require('connect-mongo')(session);
-import passport from './security/configPassport';
-// import passport from 'passport';
-// var LocalStrategy = require('passport-local').Strategy;
-// import crypto from 'crypto';
+import passport from 'passport';
+import { initialize } from './security/configPassport';
+initialize(passport);
 
 import { join } from 'path';
 import logger from 'morgan';
@@ -13,7 +15,7 @@ import logger from 'morgan';
 //import {morgan as httpLogger} from './routes/middlewares/httpLogger'
 import sassMiddleware from 'node-sass-middleware';
 import mongoCon from './database/dbconnect';
-import { BaseUser } from './models/business/users/baseUserSchema';
+// import { BaseUser } from './models/business/users/baseUserSchema';
 // IMPORT ALL ROUTE HERE: route MVC and RestAPI
 import indexRouter from './routes/index.routes';
 
@@ -67,17 +69,16 @@ const sessionOptions = {
   }
 }
 app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(require('flash')()); // here, because require session
-// flush session to clear old messages
+// flush session to clear old messages foreach each requests
 app.use((req, res, next) => {
   if (req.session && req.session.flash && req.session.flash.length > 0) {
     req.session.flash = [];
   }
   next();
 });
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // ROUTE FOR WEB MVC
 app.use('/', indexRouter);

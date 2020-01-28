@@ -1,6 +1,6 @@
 import { Schema } from 'mongoose';
-
-const BaseUser = require('./baseUserSchema').BaseUser;
+//const BaseUser = require('./baseUserSchema').BaseUser;
+import {BaseUser} from '../../index';
 
 const Student = BaseUser.discriminator('Student', new Schema({
   studentCode: {type: String, required: [true, 'identify of each students']},

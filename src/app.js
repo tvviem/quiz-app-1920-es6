@@ -2,7 +2,7 @@ if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 import createError from 'http-errors';
-import express from 'express';
+import express, { response } from 'express';
 import session from 'express-session'; 
 const MongoStore = require('connect-mongo')(session);
 import passport from 'passport';
@@ -15,9 +15,19 @@ import logger from 'morgan';
 //import {morgan as httpLogger} from './routes/middlewares/httpLogger'
 import sassMiddleware from 'node-sass-middleware';
 import mongoCon from './database/dbconnect';
+import { BaseUser as UserModel } from './models';
+
 // import { BaseUser } from './models/business/users/baseUserSchema';
 // IMPORT ALL ROUTE HERE: route MVC and RestAPI
 import indexRouter from './routes/index.routes';
+
+mongoCon.once('open', () => {
+  UserModel.countDocuments((err, value) => {
+    if(!err && value==0) {
+      require('./database/seeder');
+    }
+  });
+});
 
 var app = express();
 // view engine setup
@@ -72,6 +82,12 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(require('flash')()); // here, because require session
+
+// Middleware for create a root user in system
+app.use(() => {
+  
+});
+
 // flush session to clear old messages foreach each requests
 app.use((req, res, next) => {
   if (req.session && req.session.flash && req.session.flash.length > 0) {
@@ -92,9 +108,8 @@ app.get('/login-failure', (req, res, next) => {
   res.send('You entered the wrong password.');
 });
 
-
 // catch 404 and forward to error handler
-/* app.use(function(req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
@@ -106,12 +121,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-}); */
-
-if(app.get('NODE_ENV') === 'production') { // when build to production
-  // Copy all folder from ./src/views to ./dist/views
-  // change logger module from dev --> prod using morgan
-  console.log('INSIDE config when prod');
-}
+});
 
 export default app;

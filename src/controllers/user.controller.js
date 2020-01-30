@@ -1,4 +1,4 @@
-import { BaseUser as User } from '../models/business/users/baseUserSchema';
+import {BaseUser as User} from '../models';
 import { genPassword } from '../security/processPassword'
 import UserService from '../services/user.services';
 

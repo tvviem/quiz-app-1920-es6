@@ -1,17 +1,7 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 import app from '../app';
 const debug = require('debug')('quiz-app-1920:server');
 import { createServer } from 'http';
 require('dotenv').config(); // loading .env file
-
-/**
- * Get port from environment and store in Express.
- */
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

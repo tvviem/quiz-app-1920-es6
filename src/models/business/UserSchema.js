@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema } from 'mongoose';
 // import conn from '../../../database/dbconnect';
 // const bcrypt = require('bcryptjs');
 
@@ -26,14 +26,29 @@ const userSchema = new Schema({
     match: [/^[a-zA-Z0-9]+$/, 'Username is invalid'], 
     index: true, unique: true
   },
-  //password: {type: String, required: [true, 'can not be blank']},
   hash: {type: String, required: [true, 'Hash can not be blank']},
   salt: {type: String, required: [true, 'Salt can not be blank']},
   //created_at: {type: Date, default: Date.now},
-  role: { type: String, enum: ['student', 'lecturer', 'admin'], default: 'student'},
+  role: { 
+    type: String,
+    enum: ['student', 'lecturer', 'admin'],
+    default: 'student',
+    required: [true, 'can not be blank']
+  },
+  isActive: {type: Boolean, default: false},
   iconString: {type: String, default: 'fas fa-user'} // chalkboard-teacher, users-cog
-}, baseOptions)
+},baseOptions);
+userSchema.methods.isAdmin=function() {
+  return (this.role == 'admin');
+}
+userSchema.methods.isLecturer=function() {
+  return (this.role == 'lecturer');
+}
+userSchema.methods.isStudent=function() {
+  return (this.role == 'student');
+}
 
+export { userSchema };
 /* userSchema.pre('save', function(next) {
   let user = this;
   if (!user.isModified('password')) {
@@ -54,5 +69,3 @@ const userSchema = new Schema({
 
 // const BaseUser = conn.model('User', userSchema);
 // export { BaseUser };
-
-export { userSchema };

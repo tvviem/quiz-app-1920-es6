@@ -9,10 +9,10 @@ router.get('/login', userController.showSignInUi);
 router.post('/login', passport.authenticate('local',
   { 
     successRedirect: '/login-success',
-    failureRedirect: '/login-failure',
+    failureRedirect: '/users/login',
     failureFlash: true 
-  }));
-    
+  })
+);
   // }), 
   // (err, req, res, next) => {
   //   if (err) next(err);

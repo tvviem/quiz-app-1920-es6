@@ -1,7 +1,6 @@
 // const LocalStrategy = require('passport-local').Strategy;
 import {validPassword} from './processPassword';
 import { Strategy as LocalStrategy } from 'passport-local';
-//import {BaseUser} from '../models/business/users/baseUserSchema';
 import {BaseUser} from '../models';
 
 export function initialize(passport) {

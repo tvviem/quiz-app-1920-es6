@@ -8,15 +8,13 @@ router.post('/register', userController.postRegister);
 router.get('/login', userController.showSignInUi);
 router.post('/login', passport.authenticate('local',
   { 
-    successRedirect: '/login-success',
+    successRedirect: '/check-role-to-forward-ui', // warning 2 times to check role
     failureRedirect: '/users/login',
-    failureFlash: true 
+    badRequestMessage: 'Vui lòng điền thông tin', // default = Missing credentials
+    failureFlash: true
   })
 );
-  // }), 
-  // (err, req, res, next) => {
-  //   if (err) next(err);
-  // }
-router.get('/list', userController.showUsersDetailUi);
+
+// Route for guide, 
 
 export default router;

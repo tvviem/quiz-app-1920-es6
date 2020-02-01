@@ -1,8 +1,8 @@
 if(process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-}
+} 
 import createError from 'http-errors';
-import express, { response } from 'express';
+import express from 'express';
 import session from 'express-session'; 
 const MongoStore = require('connect-mongo')(session);
 import passport from 'passport';
@@ -30,6 +30,34 @@ mongoCon.once('open', () => {
 });
 
 var app = express();
+// Config session and passport
+const sessionStore = new MongoStore({ 
+  mongooseConnection: mongoCon, 
+  touchAfter: 24 * 3600, // lazy update session, the session be updated only one time in a period of 24 hours,
+  collection: 'sessions', 
+  ttl: (60*60*1) // 1 hour (seconds is unit, default value 14 days)
+});
+const sessionOptions = {
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  cookie: {
+    //secure: true,
+    httpOnly: true, // phia client khong the truy xuat cookie voi lenh document.cookie
+    maxAge: 1000 * 60 * 60, // 60 mins (miliseconds is default unit, maxAge default null ),
+  },
+  name: 'qidsess'
+}
+if(process.env.NODE_ENV == 'production') { // for deploy app with https 
+  app.set('trust proxy', 1) // trust first proxy
+  sessionOptions.cookie.secure = true // serve secure cookies
+}
+//const sessionPaths = ['/users/login', '/users/register', '/'];
+app.use(session(sessionOptions));
+app.use(passport.initialize());
+app.use(passport.session());
+
 // view engine setup
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -57,36 +85,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
-
-/**
- * -------------- SESSION SETUP ----------------
- */
-/**
- * The MongoStore is used to store session data.  We will learn more about this in the post.
- * 
- * Note that the `connection` used for the MongoStore is the same connection that we are using above
- */
-const sessionStore = new MongoStore({ mongooseConnection: mongoCon, collection: 'sessions' })
-const sessionOptions = {
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true,
-  store: sessionStore,
-  cookie: {
-    // secure: true,
-    // httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 // 1 day
-  }
-}
-app.use(session(sessionOptions));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(require('flash')()); // here, because require session
-
-// Middleware for create a root user in system
-app.use(() => {
-  
-});
 
 // flush session to clear old messages foreach each requests
 app.use((req, res, next) => {
@@ -99,13 +98,10 @@ app.use((req, res, next) => {
 // ROUTE FOR WEB MVC
 app.use('/', indexRouter);
 
-// Test passport
-app.get('/login-success', (req, res, next) => {
-  console.log(req.session);
-  res.send('You successfully logged in.');
-});
-app.get('/login-failure', (req, res, next) => {
-  res.send('You entered the wrong password.');
+// redundant code, cause recheck 2 times role of user
+app.get('/check-role-to-forward-ui', (req, res, next) => {
+  if(req.user.role == 'admin')
+    res.redirect('/admin/dashboard');
 });
 
 // catch 404 and forward to error handler

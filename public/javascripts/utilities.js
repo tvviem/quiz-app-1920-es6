@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
   // using for delete Notification Bulma' elements
   (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
     $notification = $delete.parentNode;

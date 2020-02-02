@@ -7,7 +7,7 @@ nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigat
         span
         span
         span
-    .navbar-menu.has-background-white(id='navMenu')
+    #navMenu.navbar-menu.has-background-white
       .navbar-start
         a.navbar-item(href='/')
           span.icon
@@ -18,14 +18,20 @@ nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigat
             i.fab.fa-glide-g
           | &nbsp;Hướng dẫn
       .navbar-end
-        a.navbar-item(href='/users/register') 
-          span.icon
-            i.fas.fa-user-plus
-          | &nbsp;Đăng ký
-        a.navbar-item(href='/users/login') 
-          span.icon
-            i.fas.fa-sign-in-alt
-          | &nbsp;Đăng nhập
+        if username!=null
+          a.navbar-item(href='/users/logout') 
+            span.icon
+              i.fas.fa-user-plus
+            | &nbsp;Đăng xuất
+        else
+          a.navbar-item(href='/users/register') 
+            span.icon
+              i.fas.fa-user-plus
+            | &nbsp;Đăng ký
+          a.navbar-item(href='/users/login') 
+            span.icon
+              i.fas.fa-sign-in-alt
+            | &nbsp;Đăng nhập
         //- .navbar-item.has-dropdown.is-hoverable
         //-   a.navbar-link
         //-     span.icon

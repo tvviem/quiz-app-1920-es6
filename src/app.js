@@ -70,13 +70,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // extended=true allow post nested object json
 
 app.use(sassMiddleware({
-  src: join(__dirname, '../public'),
+  src: join(__dirname, '../scss'),
   dest: join(__dirname, '../public'),
   indentedSyntax: false, // true = .sass and false = .scss
-  sourceMap: true,
+  //sourceMap: true,
+  outputStyle: 'compressed',
   debug: true // to show error when not locate file
 }));
 app.use(express.static(join(__dirname, '../public')));
+
 // Enable CORS from client-side
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -101,7 +103,7 @@ app.use('/', indexRouter);
 // redundant code, cause recheck 2 times role of user
 app.get('/check-role-to-forward-ui', (req, res, next) => {
   if(req.user.role == 'admin')
-    res.redirect('/admin/dashboard');
+    res.render('admin/dashboard', {username: req.user.username});
 });
 
 // catch 404 and forward to error handler

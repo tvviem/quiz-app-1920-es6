@@ -1,86 +1,136 @@
-main.column
-  nav.breadcrumb.is-small(aria-label='breadcrumbs')
-    ul
-      li
-        a(href='#') Home
-      li.is-active
-        a(href='#', aria-current='page') Dashboard
-  .level
-    .level-left
-      .level-item
-        .title.has-text-primary
-          i.fa.fa-tachometer
-          |  Dashboard
-    .level-right
-      .level-item
-        button.button.is-small(type='button')
-          | March 8, 2017 - April 6, 2017
-  .columns.is-multiline
-    .column
-      .box.notification.is-primary
-        .heading Top Seller Total
-        .title 56,950
-        .level
-          .level-item
-            div
-              .heading Sales $
-              .title.is-5 250K
-          .level-item
-            div
-              .heading Overall $
-              .title.is-5 750K
-          .level-item
-            div
-              .heading Sales %
-              .title.is-5 25%
-    .column
-      .box.notification.is-warning
-        .heading Revenue / Expenses
-        .title 55% / 45%
-        .level
-          .level-item
-            div
-              .heading Rev Prod $
-              .title.is-5 30%
-          .level-item
-            div
-              .heading Rev Serv $
-              .title.is-5 25%
-          .level-item
-            div
-              .heading Exp %
-              .title.is-5 45%
-    .column
-      .box.notification.is-info
-        .heading Feedback Activity
-        .title 78% &uarr;
-        .level
-          .level-item
-            div
-              .heading Pos
-              .title.is-5 1560
-          .level-item
-            div
-              .heading Neg
-              .title.is-5 368
-          .level-item
-            div
-              .heading Pos/Neg %
-              .title.is-5 77% / 23%
-    .column
-      .box.notification.is-danger
-        .heading Orders / Returns
-        .title 75% / 25%
-        .level
-          .level-item
-            div
-              .heading Orders $
-              .title.is-5 425K
-          .level-item
-            div
-              .heading Returns $
-              .title.is-5 106K
-          .level-item
-            div
-              .heading Success %
-              .title.is-5 + 28,5%
+.column.is-9
+  //- nav.breadcrumb(aria-label='breadcrumbs')
+  //-   ul
+  //-     li
+  //-       a(href='../') Bulma
+  //-     li
+  //-       a(href='../') Templates
+  //-     li
+  //-       a(href='../') Examples
+  //-     li.is-active
+  //-       a(href='#', aria-current='page') Admin
+  section.hero.is-info.welcome.is-small
+    .hero-body
+      .container
+        h1.title
+          | Hello, Admin.
+        h2.subtitle
+          | I hope you are having a great day!
+  section.info-tiles
+    .tile.is-ancestor.has-text-centered
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title 439k
+          p.subtitle Users
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title 59k
+          p.subtitle Products
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title 3.4k
+          p.subtitle Open Orders
+      .tile.is-parent
+        article.tile.is-child.box
+          p.title 19
+          p.subtitle Exceptions
+  .columns
+    .column.is-6
+      .card.events-card
+        header.card-header
+          p.card-header-title
+            | Events
+          a.card-header-icon(href='#', aria-label='more options')
+            span.icon
+              i.fa.fa-angle-down(aria-hidden='true')
+        .card-table
+          .content
+            table.table.is-fullwidth.is-striped
+              tbody
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+                tr
+                  td(width='5%')
+                    i.fa.fa-bell-o
+                  td Lorum ipsum dolem aire
+                  td.level-right
+                    a.button.is-small.is-primary(href='#') Action
+        footer.card-footer
+          a.card-footer-item(href='#') View All
+    .column.is-6
+      .card
+        header.card-header
+          p.card-header-title
+            | Inventory Search
+          a.card-header-icon(href='#', aria-label='more options')
+            span.icon
+              i.fa.fa-angle-down(aria-hidden='true')
+        .card-content
+          .content
+            .control.has-icons-left.has-icons-right
+              input.input.is-large(type='text', placeholder='')
+              span.icon.is-medium.is-left
+                i.fa.fa-search
+              span.icon.is-medium.is-right
+                i.fa.fa-check
+      .card
+        header.card-header
+          p.card-header-title
+            | User Search
+          a.card-header-icon(href='#', aria-label='more options')
+            span.icon
+              i.fa.fa-angle-down(aria-hidden='true')
+        .card-content
+          .content
+            .control.has-icons-left.has-icons-right
+              input.input.is-large(type='text', placeholder='')
+              span.icon.is-medium.is-left
+                i.fa.fa-search
+              span.icon.is-medium.is-right
+                i.fa.fa-check

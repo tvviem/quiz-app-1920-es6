@@ -1,0 +1,21 @@
+nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigation')
+  .container
+    .navbar-brand
+      a.navbar-item.brand-text(href='/admin/dashboard')
+        | Admin Board
+      .navbar-burger.burger(data-target='navMenu')
+        span
+        span
+        span
+    #navMenu.navbar-menu
+      .navbar-end
+        a.navbar-item(href='admin.html')
+          | Home
+        a.navbar-item(href='admin.html')
+          | Orders
+        a.navbar-item(href='admin.html')
+          | Payments
+        a.navbar-item(href='admin.html')
+          | Exceptions
+        a.navbar-item(href='admin.html')
+          | Reports

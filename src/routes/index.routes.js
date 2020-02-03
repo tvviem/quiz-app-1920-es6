@@ -12,8 +12,8 @@ router.use('/api/v1', allApi);
 // MVC tradition
 router.get(['/', '/index.php'], getHomePage);
 // Route for general users
-router.use('/users', userRoutes);
-// All routes for user with admin role
+router.use('/user', userRoutes);
+// All routes for user within admin.routes.js
 router.use('/admin', checkAuthenticated, checkAdminRole, adminRoutes); // can them check role
 
 export default router;

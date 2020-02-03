@@ -9,26 +9,27 @@ nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigat
         span
     #navMenu.navbar-menu.has-background-white
       .navbar-start
-        a.navbar-item(href='/')
-          span.icon
-            i.fas.fa-home
-          | &nbsp;Trang chủ
+        if username!=null
+          a.navbar-item(href='/user/dashboard')
+            span.icon
+              i.fas.fa-home
+            | &nbsp;Bàn làm việc
         a.navbar-item(href='/guides')
           span.icon
             i.fab.fa-glide-g
           | &nbsp;Hướng dẫn
       .navbar-end
         if username!=null
-          a.navbar-item(href='/users/logout') 
+          a.navbar-item(href='/user/logout') 
+            | Thoát &nbsp;
             span.icon
-              i.fas.fa-user-plus
-            | &nbsp;Đăng xuất
+              i.fas.fa-sign-out-alt
         else
-          a.navbar-item(href='/users/register') 
+          a.navbar-item(href='/user/register') 
             span.icon
               i.fas.fa-user-plus
             | &nbsp;Đăng ký
-          a.navbar-item(href='/users/login') 
+          a.navbar-item(href='/user/login') 
             span.icon
               i.fas.fa-sign-in-alt
             | &nbsp;Đăng nhập

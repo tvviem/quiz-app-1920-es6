@@ -1,5 +1,6 @@
 function getHomePage(req, res) {
-  res.render('homepage', { title: 'Knowledge review system' });
+  let username = (!req.user || req.user==='undefined') ? null : req.user.username;
+  res.render('homepage', { title: 'Knowledge review system', username: username});
 }
 
 export {

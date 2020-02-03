@@ -4,8 +4,16 @@ export function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect('/users/login');
+  res.redirect('/user/login');
 }
+
+export function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/user/dashboard');
+  }
+  next();
+}
+
 export function checkAdminRole(req, res, next) {
   if (req.user.role == 'admin') {
     return next();

@@ -1,13 +1,12 @@
 import {BaseUser as User} from '../models';
 import { genPassword } from '../security/processPassword'
-import UserService from '../services/user.services';
 
 export function showSignUpUi(req, res) {
-  res.render('users/register');
+  res.render('user/register');
 }
 
 export function showSignInUi(req, res) {
-  res.render('users/login');
+  res.render('user/login');
 }
 
 export function showUsersDetailUi(req, res) {
@@ -31,9 +30,19 @@ export async function postRegister(req, res) {
     if(err) {
       // console.log(err);
       req.flash('warning', err.message);
-      return res.redirect('/users/register');
+      return res.redirect('/user/register');
     }
     req.flash('success', 'Register success!');
-    return res.redirect('/users/login');
+    return res.redirect('/user/login');
   });
+}
+export function choiceBoard(req, res) {
+  if(req.user.role == 'admin')
+    res.render('admin/dashboard', { username: req.user.username });
+  else if(req.user.role == 'lecturer')
+    res.render('lecturer/dashboard', {username: req.user.username});
+  else if(req.user.role == 'student')
+    res.render('student/dashboard', {username: req.user.username});
+  else 
+    res.render('error', {message: 'Truy cập không hợp lệ!'});
 }

@@ -22,8 +22,8 @@ import { BaseUser as UserModel } from './models';
 import indexRouter from './routes/index.routes';
 
 mongoCon.once('open', () => {
-  UserModel.countDocuments((err, value) => {
-    if(!err && value==0) {
+  UserModel.countDocuments({ role: 'admin' }, (err, value) => {
+    if(!err && value<1) { // chua co bat ky mot admin nao
       require('./database/seeder');
     }
   });
@@ -99,12 +99,6 @@ app.use((req, res, next) => {
 
 // ROUTE FOR WEB MVC
 app.use('/', indexRouter);
-
-// redundant code, cause recheck 2 times role of user
-app.get('/check-role-to-forward-ui', (req, res, next) => {
-  if(req.user.role == 'admin')
-    res.render('admin/dashboard', {username: req.user.username});
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

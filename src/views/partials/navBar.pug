@@ -1,7 +1,7 @@
 nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigation')
   .container
     .navbar-brand
-      a.navbar-item.has-text-weight-bold(href='/')
+      a.navbar-item.has-text-weight-bold(href='/', title=siteName)
         | QuizSysBLU
       a.navbar-burger(data-target='navMenu')
         span
@@ -9,7 +9,7 @@ nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigat
         span
     #navMenu.navbar-menu.has-background-white
       .navbar-start
-        if username!=null
+        if user!=null
           a.navbar-item(href='/user/dashboard')
             span.icon
               i.fas.fa-home
@@ -19,11 +19,11 @@ nav.navbar.is-fixed-top.box-shadow-y(role='navigation', aria-label='main navigat
             i.fab.fa-glide-g
           | &nbsp;Hướng dẫn
       .navbar-end
-        if username!=null
+        if user!=null
           a.navbar-item(href='/user/logout') 
             | Thoát &nbsp;
             span.icon
-              i.fas.fa-sign-out-alt
+              i(class=user.iconString)
         else
           a.navbar-item(href='/user/register') 
             span.icon

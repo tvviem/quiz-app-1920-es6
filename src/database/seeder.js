@@ -11,7 +11,8 @@ const firstUserAsAdmin = new User({
   role: 'admin',
   hash: hash,
   salt: salt,
-  isActive: true
+  isActive: true,
+  iconString: 'fas fa-users-cog'
 });
 User.create(firstUserAsAdmin, function(err) {
   if(err)

@@ -9,20 +9,36 @@ block content
           .column.is-5-tablet.is-4-desktop.is-3-widescreen.is-two-thirds-mobile.box
             h4.title.has-text-grey.is-4 NGƯỜI DÙNG
             form(action='/user/login', method='POST')
+              p !{captcha}
               .field
                 .control.has-icons-left
-                  input.input(type='text', placeholder='Tên đăng nhập', autofocus, autocomplete, name='username')
+                  input.input(type='text', placeholder='Tên đăng nhập', autofocus, autocomplete, name='username', required)
                   span.icon.is-small.is-left
                     i.fas.fa-user
               .field
                 .control.has-icons-left
-                  input.input(type='password', placeholder='Mật khẩu', name='password')
+                  input.input(type='password', placeholder='Mật khẩu', name='password', required, autocomplete)
                   span.icon.is-small.is-left
                     i.fas.fa-key
               .field
-                label.checkbox
-                  input(type='checkbox')
-                  | &nbsp;Nhớ phiên
-              .field
-                button.button.is-primary.is-fullwidth(type='submit')
+                button.button.is-primary.is-fullwidth
                   | Đăng nhập
+              .field
+                a.button.is-link.is-light.is-fullwidth(href='/')
+                  | Trang chủ
+              //- if (captcha)
+              //-   .field
+              //-     .control
+              //-       input.input(type='text', name='tokenCaptcha')
+block js
+  //- script(src='https://www.recaptcha.net/recaptcha/api.js', async='', defer='')
+  //- script(src='https://www.google.com/recaptcha/api.js?render=<SITE_KEY>', defer)
+  script.
+    function cb(token){ // token get from server
+      var input = document.createElement('input');
+      //- input.setAttribute('type', 'text');
+      input.setAttribute('type', 'hidden');
+      input.setAttribute('name', 'tokenCaptcha');
+      input.setAttribute('value', token);
+      document.getElementsByTagName('form')[0].appendChild(input);
+    }

@@ -62,6 +62,7 @@ app.use(passport.session());
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
 //app.engine('pug', require('pug').renderFile);
+app.locals.siteName = 'Knowledge review system';
 
 // ALL Middlewares here
 app.use(logger('dev'));
@@ -81,10 +82,10 @@ app.use(express.static(join(__dirname, '../public')));
 
 // Enable CORS from client-side
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
-  res.header('Access-Control-Allow-Credentials', 'true');
+  // res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  // res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials');
+  // res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
 app.use(require('flash')()); // here, because require session
@@ -96,7 +97,15 @@ app.use((req, res, next) => {
   }
   next();
 });
-
+app.use((req, res, next) => {
+  if(req.user) {
+    res.locals.user = {
+      username: req.user.username,
+      iconString: req.user.iconString
+    };
+  }
+  next();
+});
 // ROUTE FOR WEB MVC
 app.use('/', indexRouter);
 

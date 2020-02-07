@@ -14,6 +14,15 @@ export function checkNotAuthenticated(req, res, next) {
   next();
 }
 
+// Show captcha when countFailed>1
+export function sendCaptchaToClient(req, res, next) {
+  // let cntFailed = req.session.countFailed;
+  // if(!isNaN(cntFailed) && cntFailed > 1) {
+  //   res.
+  // }
+  // next();
+}
+
 export function checkAdminRole(req, res, next) {
   if (req.user.role == 'admin') {
     return next();

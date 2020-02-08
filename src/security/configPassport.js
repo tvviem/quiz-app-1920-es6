@@ -4,10 +4,10 @@ import {BaseUser} from '../models';
 // const request = require('request');
 import request from 'request';
 
+// Config session-based with passport-local
 export function initialize(passport) {
   const authenticateUser = async (req, username, password, done) => {
-    // let cntFailed = !req.session.countFailed ? 0 : req.session.countFailed;
-    // if(cntFailed > 1) { // require three times
+    // Use RecaptchaV3 google
     if(!req.body.tokenCaptcha)
       return done(null, false, {type: 'warning', message: 'No tokenCaptcha sended'});
     else { // verify captcha
@@ -18,39 +18,35 @@ export function initialize(passport) {
         if(!body.success && body.success === undefined){
           return done(null, false, {type: 'warning', message: 'Captcha verification failed'}); //res.json({"success":false, "msg":"captcha verification failed"});
         }
-        else if(body.score < 0.5){
+        if(body.score < 0.5){
           return done(null, false, {type: 'warning', message: 'You might be a bot, WARNING'}); // res.json({"success":false, "msg":"you might be a bot, sorry!", "score": body.score});
         }
         // return json message or continue with your function. Example: loading new page, ect
-        console.log('success: ' + body.success + ', with score: ' + body.score)
+        //console.log('success: ' + body.success + ', with score: ' + body.score)
         //return res.json({"success":true, "msg":"captcha verification passed", "score": body.score});
       });
     }
-    // }
+    // Search user info
     const user = await BaseUser.findOne({ username: username }, (error, doc) => {
       if(!error) return doc;
       else console.log('LOI TIM KIEM USER KHI CHUNG THUC');
     });  
     if(user === null) {
-      //req.session.countFailed++; // FOR COUNT num of times LOGIN Failed!
       return done(null, false, {type: 'warning', message: `No user with name ${username}`});
     }
     try {
       if (validPassword(password, user.hash, user.salt)) {
-        //delete req.session.countFailed;
         return done(null, user); // SUCCESS INFO
       } else {
-        //req.session.countFailed++; // FOR COUNT num of times LOGIN Failed!
         return done(null, false, {type: 'warning', message: 'Incorrect password!'});
       }
     } catch (error) {
       return done(error);
     }
   }
-
   // when use email is identify user.
   // passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'passwd'}, authenticateUser));
-  passport.use(new LocalStrategy({ passReqToCallback: true }, authenticateUser));
+  passport.use(new LocalStrategy({ passReqToCallback: true }, authenticateUser)); // use req inside authenticateUser method
   passport.serializeUser((user, done) => done(null, user._id));
   passport.deserializeUser((_id, done) => {
     BaseUser.findById(_id, (err, userDoc) => {
@@ -60,3 +56,7 @@ export function initialize(passport) {
     });
   });
 }
+// A other config for passport with JWT authentication
+/* export function initPassportForJWT(passport) {
+
+} */

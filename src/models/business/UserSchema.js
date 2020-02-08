@@ -10,8 +10,8 @@ const baseOptions = {
 
 // Our Base schema: these properties will be shared with our "real" schemas
 const userSchema = new Schema({
-  firstName: {type: String, trim: true, default: 'unset'},
-  lastName: {type: String, trim: true, default: 'unset'},
+  firstName: {type: String, trim: true, required:[true, 'firstName not blank']},
+  lastName: {type: String, trim: true, required:[true, 'lastName not blank']},
   gender: { type: String, default: 'undefined'},
   email: {
     type: String, 
@@ -28,7 +28,6 @@ const userSchema = new Schema({
   },
   hash: {type: String, required: [true, 'Hash can not be blank']},
   salt: {type: String, required: [true, 'Salt can not be blank']},
-  //created_at: {type: Date, default: Date.now},
   role: { 
     type: String,
     enum: ['student', 'lecturer', 'admin'],
@@ -36,6 +35,8 @@ const userSchema = new Schema({
     required: [true, 'can not be blank']
   },
   isActive: {type: Boolean, default: false},
+  major: {type: String, required: true},
+  description: {type: String, required: [true, 'You have to describe you self']},
   iconString: {type: String, default: 'fas fa-user'} // chalkboard-teacher, users-cog
 },baseOptions);
 userSchema.methods.isAdmin=function() {

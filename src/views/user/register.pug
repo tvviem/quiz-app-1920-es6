@@ -8,7 +8,7 @@ block content
       .container
         if flash
           include ../partials/messages.pug
-        form(action='/users/register', method='POST')
+        form(action='/user/register', method='POST')
           .columns.is-centered.is-mobile
             .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box
               h4.title.is-4.has-text-centered ĐĂNG KÝ NGƯỜI DÙNG
@@ -26,6 +26,15 @@ block content
                       input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName')
                       span.icon.is-small.is-left
                         i.far.fa-user
+                  .field.is-narrow
+                    .control.has-icons-left
+                      .select
+                        select(name='gender')
+                          option Nam
+                          option Nữ
+                          option Chưa rõ
+                      .icon.is-small.is-left
+                        i.fas.fa-transgender-alt
               .field.is-horizontal
                 .field-label.is-normal
                   label.label Định danh
@@ -52,17 +61,17 @@ block content
                         i.fas.fa-key
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Xác nhận lại')
+                      input.input(type='password', autocomplete, placeholder='Xác nhận lại', name='repassword')
                       span.icon.is-small.is-left
                         i.fas.fa-key
               .field.is-horizontal
                 .field-label.is-normal
                   label.label Ngành học
                 .field-body
-                  .field.is-narrow
+                  .field
                     .control.has-icons-left
                       .select
-                        select
+                        select(name='major')
                           option Công nghệ thông tin
                           option Ngôn ngữ Anh
                           option Quản trị kinh doanh
@@ -76,13 +85,14 @@ block content
                 .field-body
                   .field
                     .control
-                      textarea.textarea.is-info(placeholder='Sinh viên năm mấy? Khoa, trường học?', rows='3')
+                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', name='description')
               .field.is-horizontal
                 .field-body
                   .field.is-grouped.is-grouped-centered
                     .control
                       button.button.is-rounded.is-primary Đăng ký
                     .control
-                      button.button.is-rounded.is-outlined Trở về
+                      a.button.is-link.is-light.is-fullwidth(href='/')
+                        | Trang chủ
 block footer
   include ../partials/footer.pug

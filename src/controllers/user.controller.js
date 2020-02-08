@@ -10,13 +10,6 @@ export function showSignUpUi(req, res) {
 }
 
 export function showSignInUi(req, res) {
-  // let cntFailed = !req.session.countFailed ? 0 : req.session.countFailed;
-  // console.log('TIMEs FAIL-ED: ' + cntFailed)
-  // if(cntFailed > 1) {
-  //   res.render('user/login', { captcha: recaptcha.render()});  
-  // } else {
-  //   res.render('user/login');
-  // }
   res.render('user/login', { captcha: recaptcha.render()});
 }
 

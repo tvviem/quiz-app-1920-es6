@@ -1,5 +1,8 @@
-//- while objMsg = flash.shift()
 for objMsg in flash
   div(class='notification is-' + objMsg.type)
     button.delete
-    p= objMsg.message
+    if (Array.isArray(objMsg.message))
+      for msgFlash in objMsg.message
+        p= msgFlash.message
+    else
+      p= objMsg.message

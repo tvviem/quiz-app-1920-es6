@@ -18,18 +18,18 @@ block content
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete, name='lastName')
+                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete, name='lastName', required, value=(undefined===user ? '' : user.lastName))
                       span.icon.is-small.is-left
                         i.far.fa-user
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName')
+                      input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName', required, value=(undefined===user ? '' : user.firstName))
                       span.icon.is-small.is-left
                         i.far.fa-user
                   .field.is-narrow
                     .control.has-icons-left
                       .select
-                        select(name='gender')
+                        select(name='gender', value=(undefined===user ? '' : user.gender))
                           option Nam
                           option Nữ
                           option Chưa rõ
@@ -41,13 +41,14 @@ block content
                 .field-body
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên đăng nhập', autofocus,
+                      input.input(type='text', placeholder='Tên đăng nhập', autofocus, required, value=(undefined===user ? '' : user.username),
                                    autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng', name='username')
                       span.icon.is-small.is-left
                         i.fas.fa-user-tag
                   .field
                     .control.has-icons-left
-                      input.input(type='email', placeholder='Địa chỉ email', autofocus, autocomplete, title='Hãy cung cấp email bạn đang sử dụng!', name='email')
+                      input.input(type='email', placeholder='Địa chỉ email', autofocus, required, value=(undefined===user ? '' : user.email),
+                                  autocomplete, title='Hãy cung cấp email bạn đang sử dụng!', name='email')
                       span.icon.is-small.is-left
                         i.far.fa-envelope
               .field.is-horizontal
@@ -56,12 +57,12 @@ block content
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Mật khẩu', name='password')
+                      input.input(type='password', autocomplete, placeholder='Mật khẩu', name='password', required, value=(undefined===user ? '' : user.password))
                       span.icon.is-small.is-left
                         i.fas.fa-key
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Xác nhận lại', name='repassword')
+                      input.input(type='password', autocomplete, placeholder='Xác nhận lại', name='repassword', required, value=(undefined===user ? '' : user.repassword))
                       span.icon.is-small.is-left
                         i.fas.fa-key
               .field.is-horizontal
@@ -71,7 +72,7 @@ block content
                   .field
                     .control.has-icons-left
                       .select
-                        select(name='major')
+                        select(name='major', value=(undefined===user ? '' : user.major))
                           option Công nghệ thông tin
                           option Ngôn ngữ Anh
                           option Quản trị kinh doanh
@@ -79,13 +80,18 @@ block content
                           option Khác
                       .icon.is-small.is-left
                         i.fas.fa-user-graduate
+                  .field
+                    .control.has-icons-left
+                      input.input(type='text', autofocus, placeholder='Số di động', autocomplete, name='phone', required, value=(undefined===user ? '' : user.phone))
+                      span.icon.is-small.is-left
+                        i.fas.fa-mobile-alt
               .field.is-horizontal
                 .field-label.is-normal
                   label.label Bản thân
                 .field-body
                   .field
                     .control
-                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', name='description')
+                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', name='description', value=(undefined===user ? '' : user.description))
               .field.is-horizontal
                 .field-body
                   .field.is-grouped.is-grouped-centered

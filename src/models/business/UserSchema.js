@@ -36,9 +36,10 @@ const userSchema = new Schema({
   },
   isActive: {type: Boolean, default: false},
   major: {type: String, required: true},
-  description: {type: String, required: [true, 'You have to describe you self']},
+  description: {type: String, required: [true, 'You have to describe youself']},
+  phone: {type: String, required:[true, 'Phone is not blank']},
   iconString: {type: String, default: 'fas fa-user'} // chalkboard-teacher, users-cog
-},baseOptions);
+}, baseOptions);
 userSchema.methods.isAdmin=function() {
   return (this.role == 'admin');
 }

@@ -3,9 +3,10 @@ const router = Router();
 import  * as userController from '../controllers/user.controller';
 import passport from 'passport';
 import {checkNotAuthenticated, checkAuthenticated} from './mwAuth/protectRoutes';
+import {validate} from '../controllers/validate'
 
 router.get('/register', checkNotAuthenticated, userController.showSignUpUi);
-router.post('/register', checkNotAuthenticated, userController.postRegister);
+router.post('/register', checkNotAuthenticated, validate('postRegister'), userController.postRegister);
 router.get('/login', checkNotAuthenticated, userController.showSignInUi);
 router.post('/login', checkNotAuthenticated,
     passport.authenticate('local', { 

@@ -11,28 +11,28 @@ block content
         form(action='/user/register', method='POST')
           .columns.is-centered.is-mobile
             .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box
-              h4.title.is-4.has-text-centered ĐĂNG KÝ NGƯỜI DÙNG
+              h4.title.is-4.has-text-centered SINH VIÊN ĐĂNG KÝ
               .field.is-horizontal
                 .field-label.is-normal
                   label.label Họ tên
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete, name='lastName', required, value=(undefined===user ? '' : user.lastName))
+                      input.input(type='text', autofocus, placeholder='Họ và chữ đệm', autocomplete, name='lastName', required, value=(undefined===usrNew ? '' : usrNew.lastName))
                       span.icon.is-small.is-left
                         i.far.fa-user
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName', required, value=(undefined===user ? '' : user.firstName))
+                      input.input(type='text', placeholder='Tên', autofocus, autocomplete, name='firstName', required, value=(undefined===usrNew ? '' : usrNew.firstName))
                       span.icon.is-small.is-left
                         i.far.fa-user
                   .field.is-narrow
                     .control.has-icons-left
                       .select
-                        select(name='gender', value=(undefined===user ? '' : user.gender))
-                          option Nam
-                          option Nữ
-                          option Chưa rõ
+                        select(name='gender')
+                          option(value='Nam', selected=((usrNew!==undefined && usrNew.gender=='Nam'))) Nam
+                          option(value='Nữ', selected=((usrNew!==undefined && usrNew.gender=='Nữ'))) Nữ
+                          option(value='Chưa rõ', selected=((usrNew!==undefined && usrNew.gender=='Chưa rõ'))) Chưa rõ
                       .icon.is-small.is-left
                         i.fas.fa-transgender-alt
               .field.is-horizontal
@@ -41,13 +41,13 @@ block content
                 .field-body
                   .field.is-narrow
                     .control.has-icons-left
-                      input.input(type='text', placeholder='Tên đăng nhập', autofocus, required, value=(undefined===user ? '' : user.username),
+                      input.input(type='text', placeholder='Tên đăng nhập', autofocus, required, value=(undefined===usrNew ? '' : usrNew.username),
                                    autocomplete, title='Bắt đầu là ký tự chữ, không chứa khoảng trắng', name='username')
                       span.icon.is-small.is-left
                         i.fas.fa-user-tag
                   .field
                     .control.has-icons-left
-                      input.input(type='email', placeholder='Địa chỉ email', autofocus, required, value=(undefined===user ? '' : user.email),
+                      input.input(type='email', placeholder='Địa chỉ email', autofocus, required, value=(undefined===usrNew ? '' : usrNew.email),
                                   autocomplete, title='Hãy cung cấp email bạn đang sử dụng!', name='email')
                       span.icon.is-small.is-left
                         i.far.fa-envelope
@@ -57,32 +57,32 @@ block content
                 .field-body
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Mật khẩu', name='password', required, value=(undefined===user ? '' : user.password))
+                      input.input(type='password', autocomplete, placeholder='Mật khẩu', name='password', required, value=(undefined===usrNew ? '' : usrNew.password))
                       span.icon.is-small.is-left
                         i.fas.fa-key
                   .field
                     .control.has-icons-left
-                      input.input(type='password', autocomplete, placeholder='Xác nhận lại', name='repassword', required, value=(undefined===user ? '' : user.repassword))
+                      input.input(type='password', autocomplete, placeholder='Xác nhận lại', name='repassword', required, value=(undefined===usrNew ? '' : usrNew.repassword))
                       span.icon.is-small.is-left
                         i.fas.fa-key
               .field.is-horizontal
                 .field-label.is-normal
                   label.label Ngành học
                 .field-body
-                  .field
+                  .field.is-narrow
                     .control.has-icons-left
                       .select
-                        select(name='major', value=(undefined===user ? '' : user.major))
-                          option Công nghệ thông tin
-                          option Ngôn ngữ Anh
-                          option Quản trị kinh doanh
-                          option Sư phạm
-                          option Khác
+                        select(name='major')
+                          option(value='1', selected=((usrNew!==undefined && usrNew.major=='1'))) Công nghệ thông tin
+                          option(value='2', selected=((usrNew!==undefined && usrNew.major=='2'))) Ngôn ngữ Anh
+                          option(value='3', selected=((usrNew!==undefined && usrNew.major=='3'))) Quản trị kinh doanh
+                          option(value='4', selected=((usrNew!==undefined && usrNew.major=='4'))) Sư phạm
+                          option(value='5', selected=((usrNew!==undefined && usrNew.major=='5'))) Khác
                       .icon.is-small.is-left
                         i.fas.fa-user-graduate
                   .field
                     .control.has-icons-left
-                      input.input(type='text', autofocus, placeholder='Số di động', autocomplete, name='phone', required, value=(undefined===user ? '' : user.phone))
+                      input.input(type='text', autofocus, placeholder='Số di động', autocomplete, name='phone', pattern="[0-9]", maxlength='11', required, value=(undefined===usrNew ? '' : usrNew.phone))
                       span.icon.is-small.is-left
                         i.fas.fa-mobile-alt
               .field.is-horizontal
@@ -91,7 +91,7 @@ block content
                 .field-body
                   .field
                     .control
-                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', name='description', value=(undefined===user ? '' : user.description))
+                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', maxlength='200', required, name='description') #{(undefined===usrNew) ? '' : usrNew.description}
               .field.is-horizontal
                 .field-body
                   .field.is-grouped.is-grouped-centered

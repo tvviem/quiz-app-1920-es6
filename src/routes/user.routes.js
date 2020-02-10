@@ -7,6 +7,7 @@ import {validate} from '../controllers/validate'
 
 router.get('/register', checkNotAuthenticated, userController.showSignUpUi);
 router.post('/register', checkNotAuthenticated, validate('postRegister'), userController.postRegister);
+
 router.get('/login', checkNotAuthenticated, userController.showSignInUi);
 router.post('/login', checkNotAuthenticated,
     passport.authenticate('local', { 

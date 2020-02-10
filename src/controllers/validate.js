@@ -15,15 +15,15 @@ export function validate(methodName) {
             return false;
           }
           return true;
-        }).withMessage('Mật khẩu ít nhất 8 ký tự, nhập lại phải giống nhau'),
+        }).withMessage('Mật khẩu phải giống nhau'),
         
         body('major', 'Ngành học cần cung cấp').notEmpty(),
         body('phone', 'Số điện thoại là các ký số').isInt(),
-        body('description', 'Yêu cầu phải mô tả thông tin cá nhân').notEmpty
+        body('description', 'Yêu cầu phải mô tả thông tin cá nhân').notEmpty()
       ]
     }
   }
 }
-export function errFormatter({ location, msg, param }) {
-  return {message: msg};
+export function errFormatter({ msg }) {
+  return { message: msg };
 }

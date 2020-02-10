@@ -21,9 +21,11 @@ export function showUsersDetailUi(req, res) {
 export async function postRegister(req, res, next) {
   try {
     const allErrObj = validationResult(req).formatWith(errFormatter);
+    req.session.flash = [];
+    console.log(req.body)
     if(!allErrObj.isEmpty()) {
       req.flash('warning', allErrObj.array());
-      return res.render('user/register', {user: req.body});
+      return res.render('user/register', {usrNew: req.body});
     }
 
     const saltHash = genPassword(req.body.password);

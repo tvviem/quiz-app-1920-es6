@@ -25,5 +25,6 @@ export function validate(methodName) {
   }
 }
 export function errFormatter({ msg }) {
-  return { message: msg };
+  //return { message: msg };
+  return msg; // msg is a string
 }

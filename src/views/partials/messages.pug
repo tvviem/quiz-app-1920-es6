@@ -1,8 +1,10 @@
-for objMsg in flash
-  div(class='notification is-' + objMsg.type)
+for message in flash
+  div(class='notification is-' + message.type + ' is-light')
     button.delete
-    if (Array.isArray(objMsg.message))
-      for msgFlash in objMsg.message
-        p= msgFlash.message
-    else
-      p= objMsg.message
+    .content
+      if (Array.isArray(message.message))
+        ul
+          each aMsg in message.message
+            li= aMsg
+      else
+        p= message.message

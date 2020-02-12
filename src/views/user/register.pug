@@ -6,11 +6,11 @@ block content
   section.hero
     .hero-body
       .container
-        if flash
-          include ../partials/messages.pug
-        form(action='/user/register', method='POST')
-          .columns.is-centered.is-mobile
-            .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile.box
+        .columns.is-centered.is-mobile
+          .column.is-10-tablet.is-8-desktop.is-8-widescreen.is-two-thirds-mobile
+            //- if flash.message
+            include ../partials/messages.pug
+            form(action='/user/register', method='POST').box
               h4.title.is-4.has-text-centered SINH VIÊN ĐĂNG KÝ
               .field.is-horizontal
                 .field-label.is-normal
@@ -82,7 +82,7 @@ block content
                         i.fas.fa-user-graduate
                   .field
                     .control.has-icons-left
-                      input.input(type='text', autofocus, placeholder='Số di động', autocomplete, name='phone', pattern="[0-9]", maxlength='11', required, value=(undefined===usrNew ? '' : usrNew.phone))
+                      input.input(type='text', autofocus, placeholder='Số di động', autocomplete, name='phone', maxlength='11', title='Số di động từ 10 đến 11 ký số', pattern="[0-9]{10,11}", required, value=(undefined===usrNew ? '' : usrNew.phone))
                       span.icon.is-small.is-left
                         i.fas.fa-mobile-alt
               .field.is-horizontal
@@ -91,14 +91,15 @@ block content
                 .field-body
                   .field
                     .control
-                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', maxlength='200', required, name='description') #{(undefined===usrNew) ? '' : usrNew.description}
+                      textarea.textarea.is-info(placeholder='Khoa, trường học, lớp, sở thích?', rows='3', maxlength='200', required, name='description', title='Hãy cung cấp Khoa, trường, lớp, sở thích?') #{(undefined===usrNew) ? '' : usrNew.description}
+                    p.help Tối đa 200 ký tự
               .field.is-horizontal
                 .field-body
                   .field.is-grouped.is-grouped-centered
                     .control
                       button.button.is-rounded.is-primary Đăng ký
                     .control
-                      a.button.is-link.is-light.is-fullwidth(href='/')
+                      a.button.is-link.is-rounded.is-light.is-fullwidth(href='/')
                         | Trang chủ
 block footer
   include ../partials/footer.pug

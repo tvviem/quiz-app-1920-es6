@@ -91,12 +91,12 @@ app.use((req, res, next) => {
 app.use(require('flash')()); // here, because require session
 
 // flush session to clear old messages foreach each requests
-app.use((req, res, next) => {
+/* app.use((req, res, next) => {
   if (req.session && req.session.flash && req.session.flash.length > 0) {
     req.session.flash = [];
   }
   next();
-});
+}); */
 app.use((req, res, next) => {
   if(req.user) {
     res.locals.user = {

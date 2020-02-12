@@ -11,17 +11,8 @@ export function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return res.redirect('/user/dashboard');
   }
-  console.log('INSIDE checkNotAuthenticated')
+  //console.log('INSIDE checkNotAuthenticated')
   next();
-}
-
-// Show captcha when countFailed>1
-export function sendCaptchaToClient(req, res, next) {
-  // let cntFailed = req.session.countFailed;
-  // if(!isNaN(cntFailed) && cntFailed > 1) {
-  //   res.
-  // }
-  // next();
 }
 
 export function checkAdminRole(req, res, next) {

@@ -18,13 +18,14 @@ export function showSignInUi(req, res) {
 export function showUsersDetailUi(req, res) {
   res.send('Show users detail ui'); // design ui for manage user
 }
+
 export async function postRegister(req, res, next) {
   try {
-    const allErrObj = validationResult(req).formatWith(errFormatter);
     req.session.flash = [];
-    console.log(req.body)
+    const allErrObj = validationResult(req).formatWith(errFormatter);
     if(!allErrObj.isEmpty()) {
-      req.flash('warning', allErrObj.array());
+      //req.flash('warning', allErrObj.array()); // arr of { message: 'content'}
+      req.flash('warning', allErrObj.array()); // send array of string to client
       return res.render('user/register', {usrNew: req.body});
     }
 
@@ -45,8 +46,9 @@ export async function postRegister(req, res, next) {
     });
     await newUser.save((err) => {
       if(err) {
-        req.flash('warning', err.message);
-        return res.redirect('/user/register');
+        // console.log(err.message);
+        req.flash('warning', 'Có thể định danh đã được sử dụng');
+        return res.render('user/register', {usrNew: req.body});
       }
       req.flash('success', 'Người dùng đã được đăng ký');
       return res.redirect('/user/login');
